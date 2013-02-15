@@ -1,3 +1,5 @@
-import re
-ll = re.match('hello[ \t]*(.*)world','hello      python world')
-print ll.groups()
+import cPickle as cP
+
+f = file('g:/doc/myaddress')
+st = cP.load(f)
+print st
