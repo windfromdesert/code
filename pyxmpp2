@@ -1,0 +1,47 @@
+# Package pyxmpp2
+
+## 基本组成部分
+
+### XMPP Data (XMPP数据)
+
+XMPP协议的基本功能是使用XML容器中被称为“节”的元素在实体之间发送XML数据。有三种类型的节：
+
+> The basic functionality of the XMPP protocol is to send XML data between entities using XML container elements called 'stanzas'. There are three types of stanzas:
+
+    <message /> “节”给其他实体发送一个单播(单一源头发送到单一目的接收者)信息
+    <iq /> “节”作为简单的“请求-响应”模式交换信息
+    <presence /> “节”进行可用性信息的广播
+
+这三种类型分别表现为：message.Message, iq.Iq 和 presence.Presence.
+
+> They are represented by the following PyXMPP2 classes: message.Message, iq.Iq and presence.Presence.
+
+这里“节”可以进行任意的XML有效载荷。XML信息绑定节时使用stanzapayload.StanzaPayload接口。根据需要，它可以是一个的通用stanzapayload.XMLPayload实施或任何专门的interfaces.StanzaPayload子类解码的XML元素。
+
+> The stanzas may carry arbitrary XML payload. It is bound to the stanzas using the stanzapayload.StanzaPayload interface. It can be a generic stanzapayload.XMLPayload implementation or any specialized interfaces.StanzaPayload subclass decoding the XML element as required.
+
+## XMPP Streams (XPMM流)
+
+“节”通过XML流进行发送。在PyXMPP中信息流通过类streambase.StreamBase来应用。这个类并不执行实际的I/O（参见下一选项）或者SASL/TLS（这些由类streamsasl.StreamSASLHandler和streamtls.StreamTLSHandler来处理），但是提供了基本的逻辑去处理和协调“节”和“流”。
+
+> The stanzas are sent over XML streams. In PyXMPP the stream functionality is implemented by the streambase.StreamBase class. The class does not implement actual I/O (see the next secition) or SASL/TLS (these are handled by streamsasl.StreamSASLHandler and streamtls.StreamTLSHandler), but provides the basic logic to handle stanzas and stream negotiation.
+
+## Transports (传输)
+
+实际的I/O（通过套接字发送XML数据）已经从streambase.StreamBase更干净的代码中分离。并允许其他传输的实现（如BOSH），这个接口通过interfaces.XMPPTransport抽象类来定义，并且通过transport.TCPTransport类来执行标准的TCP传输（RFC 6120）。
+
+> The actual I/O (sending XML data over socket) has been separated from the streambase.StreamBase for cleaner code and to allow alternate transport implementations (like BOSH). The interface is defined by the interfaces.XMPPTransport abstract class and the standard TCP transport (RFC 6120) is implemented via transport.TCPTransport.
+
+## Main event loop (主事件循环)
+
+传输对象时相对应的必须进行相关的I/O事件（如从套接字接收数据），一个XMPP应用通常存在各种不同的XMPP事件，因此需要一种机制来调度这些事件。在PyXMPP2中，mainloop.interfaces.MainLoop正是用来调度各种不同事件的接口，也提供了一些实现的接口：
+
+> The transport objects react on I/O events (like data received from a socket) and an XMPP application usually wants to react on various XMPP events, so a mechanism to dispatch these events is required. In PyXMPP2 the mainloop.interfaces.MainLoop interface is defined to dispatch the events to various components. There are also a few implementation of the interface provided:
+
+    mainloop.select.SelectMainLoop: 基于select.select调用的异步I/O循环。
+    mainloop.poll.PollMainLoop: 基于select.poll调用的异步I/O循环，并非适用所有平台。
+    mainloop.threads.ThreadPool: 基于线程的循环，可以替代上述两项。
+
+默认是基于poll()系统调用的循环。
+
+> The default implementation is available as mainloop.main_loop_factory.
