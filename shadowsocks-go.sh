@@ -147,7 +147,7 @@ function config_shadowsocks(){
 {
     "server":"${IP}",
     "server_port":3838,
-    "local_port":88,
+    "local_port":1080,
     "password":"${shadowsockspwd}",
     "method":"aes-256-cfb",
     "timeout":600
@@ -202,7 +202,7 @@ function install(){
     echo -e "Your Server IP: \033[41;37m ${IP} \033[0m"
     echo -e "Your Server Port: \033[41;37m 3838 \033[0m"
     echo -e "Your Password: \033[41;37m ${shadowsockspwd} \033[0m"
-    echo -e "Your Local Port: \033[41;37m 88 \033[0m"
+    echo -e "Your Local Port: \033[41;37m 1080 \033[0m"
     echo -e "Your Encryption Method: \033[41;37m aes-256-cfb \033[0m"
     echo ""
     echo "Welcome to visit:http://teddysun.com/392.html"
