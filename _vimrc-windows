@@ -1,0 +1,69 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
+set go=
+set gcr=a:blinkon0
+colo evening
+syntax on
+"设置字体颜色，默认字体是白色，我觉得太刺眼，所以改成了灰色。
+hi Normal guifg=gray
+set fileencodings=utf-8
+"set smartindent
+set smarttab
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set guifont=Consolas:h11:cANSI
+set guifont=Microsoft_YaHei_Mono:h11:cGB2312
+set nu
+set numberwidth=5
+set textwidth=80
+set lines=40
+set columns=85
+set linespace=6
+set showtabline=1
+highlight linenr guifg=#666666
+"设置工作路径
+cd G:/
+"禁止缓存文件
+set nobackup
+"打印时去掉第一行文件名
+set printheader=%<%h%m%=page\ %N
+"安装vimroom插件
+"source D:/program files/vim/vim73/autoload/vimroom.vim
+"设置Python语言自动补全
+filetype plugin indent on
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+set omnifunc=pythoncomplete#Complete
+"设置Python补全关闭预览窗口
+"set completeopt=menu
+"让Vim的补全菜单行为与一般IDE一致
+set completeopt+=longest
