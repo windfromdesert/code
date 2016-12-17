@@ -1,17 +1,63 @@
 \documentclass[12pt]{ctexart} 
 %文档默认字号12磅，中文模式ctexart
+
+%\documentclass[12pt]{article}
+%\usepackage{zhfontcfg}
+%archlinux系统使用，其中 zhfontcfg 宏包见 code 仓库。
+
 \usepackage{geometry}
 \geometry{a4paper,centering,scale=0.8}
 %设置纸张宏包geometry，设置为A4纸幅面，版心居中，长宽占页面的0.8倍。
+%\geometry{left=1cm,right=2cm,top=3cm,bottom=4cm}
+%页边距为左1cm，右2cm，上3cm，下4cm
+%\geometry{papersize={20cm,15cm}}
+%纸张的长度设置为20cm，宽度设置为15cm
+
+%在页眉左边写上我的名字，中间写上今天的日期，右边写上我的电话；页脚的正中写上页码；页眉和正文直接有一道宽为 0.4pt 的横线分割，可以在导言区加上如下几行。
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\lhead{\author}
+%\chead{\date}
+%\rhead{152xxxxxxxx}
+%\lfoot{}
+%\cfoot{\thepage}
+%\rfoot{}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headwidth}{\textwidth}
+%\renewcommand{\footrulewidth}{0pt}
+
+%\usepackage{indentfirst}
+%\setlength{\parindent}{2.45em}
+%首行缩进设置。2.45em是中文小四号字大小两个中文字的长度。
+
+\usepackage{setspace}
+\onehalfspacing
+%将行距设置为1.5倍。
+
+\addtolength{\parskip}{.4em}
+%在原有基础上，增加段间距0.4em，如果要减小段间距，只需将该数值改为负值即可。
+
 %\usepackage[nottoc]{tocbibind}
 %增加目录宏包tocbibind，宏包默认会在目录中加入目录项本身、参考文献、索引等项目，这里使用nottoc选项取消了在目录中显示目录本身。
+
+%\usepackage{graphicx}
+%插入图片或图表的宏包。
+
 %newenvironment{myquote}{\begin{quote}\kaishu\zihao{-5}}{\end{quote}}
 %定义一个新环境myquote，这里设置字体为楷书，字号为-5
 %使用：\begin{myquote} 正文 \end{myquote}
+
 %\newcommand\degree{^\circ}
 %新命令为\degree，用来代替原始命令^\circ，这是一个表示度数的符号。
-\begin{document}
 
+\title{你好，world!}
+\author{wb}
+\date{\today}
+%设置作者、标题、日期
+
+\begin{document}
+\maketitle
+\tableofcontents
 %字体设置
 %\textrm{文字} \rmfamily
 %罗马型字体
@@ -40,15 +86,13 @@
 %幻影空格，作用是产生与参数内容一样大小的空盒子，没有内容，就象是参数的一个幻影一样。
 %\linebreak指定一行的断点，上一行按完整一行散开对齐。可以带一个从0到4的可选参数，表示允许断行的程度，0表示不允许断行，默认的4表示必须断行。
 %\\ 直接另起一行，上一行保持原来的样子。
-test
+
+%插入图片
+%\includegraphics[width=.8\textwidth]{a.jpg}
+%图片宽度缩放到页面宽度的80%，图片高度会按比例缩放。
+
 \emph 加重
-
 $a+b$
-
 $a^2+b^2=c$
-
 $\angle A=\pi/2$
-
-中文
-中文
 \end{document}
