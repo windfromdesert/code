@@ -42,6 +42,8 @@
 
 %\usepackage{graphicx}
 %插入图片或图表的宏包。
+%usepackage{caption}
+%插入图片时要用到的标题宏包
 
 %newenvironment{myquote}{\begin{quote}\kaishu\zihao{-5}}{\end{quote}}
 %定义一个新环境myquote，这里设置字体为楷书，字号为-5
@@ -88,6 +90,14 @@
 %\\ 直接另起一行，上一行保持原来的样子。
 
 %插入图片
+%\begin{figure}[htbp]
+%h-这里，t-顶部，b-底部，p-浮动页，latex执行顺序为h-t-b-p，缺省为[tbp],在浮动位置选项前加一个感叹号，会使唤latex忽略应用于文本页的审美条件，试图用最严格的标准来放置图形，不过，!不会影响应用于浮动页的审美条件。
+%\centering
+%\includegraphics[width=6.6cm]{no7.jpg}
+%\caption*{照片标题在这里}
+%\label{no7}
+%\end{figure}
+%插入图片宽度为6.6cm，图片文件名称为no7.jpg，图片须与tex文件放在同一目录下。\caption*这里增加的*是为了照片标题不显示figure章节文字。
 %\includegraphics[width=.8\textwidth]{a.jpg}
 %图片宽度缩放到页面宽度的80%，图片高度会按比例缩放。
 
