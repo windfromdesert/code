@@ -3,6 +3,7 @@ import (
     "fmt"
     "io/ioutil"
     "os"
+    "regexp"
 )
 
 func main() {
@@ -13,6 +14,12 @@ func main() {
         // panic(err.Error())
         }
     fmt.Printf("%s\n", string(buf))
+    modstring := string(buf)
+    reg1 := regexp.MustCompile(`\[Title\]\n(.+)\n\[/Title\]`)
+    s1 := reg1.FindString(modstring)
+    s2 := "$1"
+    Title := reg1.ReplaceAllString(s1,s2)
+    fmt.Printf("标题是：%s\n",Title)
 }
 
 
