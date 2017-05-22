@@ -37,3 +37,26 @@
         fmt.Printf("标题是：%s\n",Title)
     }
 
+### 写入文本
+
+写入已有文件：
+
+    alltext = strings.Replace(alltext,"归档文章：</p>",indexln,1)
+    fin2, err := os.OpenFile(indexfile,os.O_RDWR | os.O_TRUNC,0644)
+    defer fin2.Close()
+    fin2.WriteString(alltext)
+    fin2.Close()
+
+或者先创建文件，再写入：
+
+    func writefile() {
+        wFile := "./htm/" + filename
+        fout,err := os.Create(wFile)
+        defer fout.Close()
+        if err != nil {
+            fmt.Println(wFile,err)
+            return
+        }
+        wri = head + zw + foot
+        fout.WriteString(wri)
+    }
