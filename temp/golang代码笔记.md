@@ -85,17 +85,17 @@
     var b string
     var c string
     for _, a := range files {
-    if !a.IsDir() {
-        b = a.Name()
-        c = strings.Replace(strings.Split(b,".")[0],"wangbin","",-1)
-        d, err := strconv.ParseInt(c,10,64)
-        if err != nil {
-            panic(err)
-        }
-        if i<d {
-            i = d
+        if !a.IsDir() {
+            b = a.Name()
+            c = strings.Replace(strings.Split(b,".")[0],"wangbin","",-1)
+            d, err := strconv.ParseInt(c,10,64)
+            if err != nil {
+                panic(err)
+            }
+            if i<d {
+                i = d
+            }
         }
     }
-  }
-  newname = "wangbin" + strconv.FormatInt(i+1,10) + ".htm"
-  lastname = "wangbin" + strconv.FormatInt(i,10) + ".htm"
+    newname = "wangbin" + strconv.FormatInt(i+1,10) + ".htm"
+    lastname = "wangbin" + strconv.FormatInt(i,10) + ".htm"
