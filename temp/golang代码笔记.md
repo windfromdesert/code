@@ -60,3 +60,42 @@
         wri = head + zw + foot
         fout.WriteString(wri)
     }
+
+### 字符串操作
+
+字符串拆分 Split
+
+    s3 := strings.Split(reg1.ReplaceAllString(s1,s2),"\n")
+
+字符串替换 Replace
+
+    PhotoInfo = strings.Replace(PhotoInfo,"\n","<br />",-1)
+
+### 文件目录操作
+
+    import (
+        "os"
+        "strings"
+        "strconv"
+    )
+
+    lujing = "./doc/"
+    dir, _ := os.Open(lujing)
+    files, _ := dir.Readdir(0)
+    var b string
+    var c string
+    for _, a := range files {
+    if !a.IsDir() {
+        b = a.Name()
+        c = strings.Replace(strings.Split(b,".")[0],"wangbin","",-1)
+        d, err := strconv.ParseInt(c,10,64)
+        if err != nil {
+            panic(err)
+        }
+        if i<d {
+            i = d
+        }
+    }
+  }
+  newname = "wangbin" + strconv.FormatInt(i+1,10) + ".htm"
+  lastname = "wangbin" + strconv.FormatInt(i,10) + ".htm"
