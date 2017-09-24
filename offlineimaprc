@@ -1,0 +1,39 @@
+[general]
+accounts = about-me
+# 郵件帳戶在本地電腦上的稱謂名，將它改為你任何你想要的名字
+ui = Curses.Blinkenlights
+# Blinky樣式的控制臺輸出，讓你知道發生了什么。
+# ui = Noninteractive.Quiet
+# 如果啟用此行，則不會輸出任何東西。最適宜cronjobs 在幕後運行了。
+ 
+[Account about-me]
+# 這裡的“myaccount”就是你在剛剛在上面改過的稱謂名了。
+localrepository = about-me-local
+# 這裡是特定的稱謂名“myaccount”之下的本地郵件暫存處的名字，起個自己喜歡的名字。
+remoterepository = about-me-remote
+# 這裡是特定的稱謂名“myaccount”之下的遠程郵件暫存處的名字，起個自己喜歡的名字,比如：Gmail。
+# autorefresh = 5
+# 如果啟用此行，則每隔五分鐘抓取一下電郵
+
+[Repository about-me-local]
+# 這裡的“mylocal”就是你在剛剛在上面改過的本地郵件暫存處的名字。
+type = Maildir
+# 在本地存儲郵件的方式。當然只支持 Maildir 方式。
+localfolders = ~/Mail
+# 指定~/Mail這個文件夾來跟電郵服務器同步電郵。當然必須事先創建好這個文件夾了，不過文件夾的名字可改為你任何你想要的名字。
+ 
+[Repository about-me-remote]
+# 這裡的“myremote”就是你在剛剛在上面改過的遠程郵件暫存處的名字。
+type = IMAP
+# 遠程郵箱的類型。當前僅支持 IMAP 類型的郵箱。
+remotehost = imap.aol.com
+# 連接什么地方的電郵呢？比如Gmail郵箱就是：imap.gmail.com
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+# 啟用安全的 SSL 支持，需事先安裝OpenSSL。
+remoteport = 993
+# 如果郵箱能支持的話，就一定要啟用，這將指定一個特定的加密通訊埠：993。否則將使用缺省的普通通訊埠，也起不到加密的作用了。
+remoteuser = wangbin@about.me
+# 就是你的郵箱登入名啦。
+# remotepass = 
+# 郵箱的密碼。 -- 當然，像這樣直接列出密碼，是不太安全。所以你要確信該文件只有你才有讀取權限。還有更好的辦法，不過就請自行參看OfflineIMAP的手冊吧。
