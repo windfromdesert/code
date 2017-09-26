@@ -14,16 +14,14 @@
 # is used because paths are expanded when parsed
 #
 # set folder=~/Mail		# where i keep my mailboxes
-set from="wangbin@about.me"
-set realname="王斌"
 set mbox_type=Maildir
 set folder=~/Mail
 # set imap_user="wangbin@about.me"
 set spoolfile=+/INBOX
 set mbox="+mbox"
 set trash="+Trash"
-set record="+sent"
-set postponed="+drafts"
+set record="+Sent"
+set postponed="+Drafts"
 set message_cachedir="~/.cache/mutt"
 set header_cache="~/.cache/mutt"
 macro index G "!/usr/bin/offlineimap \n" "Checking mails......"     # 绑定 G 作为调用offlineimap来检查邮件的快捷键
@@ -31,6 +29,16 @@ set mailcap_path="~/.mutt/mailcap"     # MIME 配置文件
 auto_view text/html
 source ~/.mutt/mutt.alias
 set alias_file="~/.mutt/mutt.alias"     # 地址簿
+
+# SMTP SETUP
+# set my_pass=
+set my_user="wangbin@about.me"
+set realname="王斌"
+set from="wangbin@about.me"
+set use_from=yes
+set smtp_url="smtps://$my_user:$my_pass@smtp.aol.com"
+set ssl_force_tls = yes
+
 # set imap_check_subscribed
 # set ssl_starttls=yes
 # set ssl_force_tls=yes
@@ -361,7 +369,8 @@ auto_view application/x-gzip
 # in a separate file so I can have the rest of the settings the same on all
 # machines.
 #
-
+send-hook . set signature="~/.mutt/signature"
+# send-hook "~t @domain.com" set signature="~/.mutt/sig"
 # source ~/.muttrc-local	# config commands local to this site
 
 # EOF
