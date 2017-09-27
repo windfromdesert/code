@@ -31,7 +31,7 @@ source ~/.mutt/mutt.alias
 set alias_file="~/.mutt/mutt.alias"     # 地址簿
 
 # SMTP SETUP
-set my_pass='518108wb'
+# set my_pass='xxxxxx'
 set my_user="wangbin@about.me"
 set realname="王斌"
 set from="wangbin@about.me"
