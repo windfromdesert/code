@@ -31,7 +31,7 @@ source ~/.mutt/mutt.alias
 set alias_file="~/.mutt/mutt.alias"     # 地址簿
 
 # SMTP SETUP
-# set my_pass=
+# set my_pass='xxx'
 set my_user="wangbin@about.me"
 set realname="王斌"
 set from="wangbin@about.me"
@@ -39,6 +39,11 @@ set use_from=yes
 set smtp_url="smtps://$my_user:$my_pass@smtp.aol.com"
 set ssl_force_tls = yes
 
+# charset-hook ^iso-8859-1$ gb2312 
+# 把 iso-8859-1 变成 gb2312 的别名，注意 "iso-8859-1" 中间的连字号！
+# charset-hook .* gb2312 # 把所有信件都用 gb2312 显示
+# charset-hook !utf-8 gb2312
+# 把不是 utf-8 的编码都映射到 gb2312
 # set imap_check_subscribed
 # set ssl_starttls=yes
 # set ssl_force_tls=yes
@@ -47,7 +52,7 @@ set ssl_force_tls = yes
 # How often to check for new mail (time in seconds).
 #   set mail_check = 120
 
-set editor='vim'        # editor use gvim
+set editor='gvim'        # editor use gvim
 
 #set abort_unmodified=yes	# automatically abort replies if I don't
 				# change the message
@@ -68,7 +73,7 @@ set copy=yes			# always save a copy of outgoing messages
 set edit_headers		# let me edit the message header when composing
 #set editor="emacs -nw"		# editor to use when composing messages
 #set bounce=yes			# don't ask about bouncing messages, just do it
-#set fast_reply			# skip initial prompts when replying
+set fast_reply			# skip initial prompts when replying
 #set fcc_attach			# keep attachments in copies of sent messages?
 #set force_name			# fcc by recipient, create if mailbox doesn't exist
 #set forward_decode		# weed and MIME decode forwaded messages
@@ -82,7 +87,7 @@ set help			# show the help lines
 #set history=20			# number of lines of history to remember
 #set hostname="mutt.org"	# my DNS domain
 set include			# always include messages when replying
-#set indent_string="> "		# how to quote replied text
+set indent_string="> "		# how to quote replied text
 #set locale="C"			# locale to use for printing time
 #set mailcap_path="~/.mailcap:/usr/local/share/mailcap"
 set nomark_old			# i don't care about whether a message is old
@@ -91,12 +96,12 @@ set mail_check=10		# how often to poll for new mail
 #set menu_scroll		# no implicit next-page/prev-page
 #set metoo			# remove my address when replying
 set mime_forward		# use message/rfc822 type to forward messages
-set move=yes			# don't ask about moving messages, just do it
+set move=no			# ask about moving messages
 #set pager=less			# some people prefer an external pager
 #set pager_context=3		# no. of lines of context to give when scrolling
 #set pager_format="-%S- %-20.20f %s"	# format of the pager status bar
 set pager_index_lines=6		# how many index lines to show in the pager
-#set pager_stop			# don't move to the next message on next-page
+set pager_stop			# don't move to the next message on next-page
 #set pgp_strict_enc		# use Q-P encoding when needed for PGP
 # set postponed=+postponed	# mailbox to store postponed messages in
 #set post_indent_string='---end quoted text---'
@@ -116,6 +121,11 @@ set reverse_name		# use my address as it appears in the message
 set nosave_empty		# remove files when no messages are left
 #set save_name			# save outgoing messages by recipient, if the
 #set sendmail="/usr/lib/sendmail -oi -oem"	# how to deliver mail
+set send_charset="us-ascii:iso-8859-1:gb2312:utf-8"     
+# 你的信件如果全是英文，那么信件就会被设置为 us-ascii 编码
+# 如果出现了法语字符，那么就会用 iso-8859-1
+# 如果出现了汉字就会用 gb2312
+# 如果以上都不是，那么就用 utf-8
 #set shell="/bin/zsh"		# program to use for shell escapes
 #set signature="~/.signature"	# file which contains my signature
 
