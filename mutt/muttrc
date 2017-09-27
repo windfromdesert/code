@@ -31,7 +31,7 @@ source ~/.mutt/mutt.alias
 set alias_file="~/.mutt/mutt.alias"     # 地址簿
 
 # SMTP SETUP
-# set my_pass='xxx'
+set my_pass='518108wb'
 set my_user="wangbin@about.me"
 set realname="王斌"
 set from="wangbin@about.me"
@@ -39,6 +39,7 @@ set use_from=yes
 set smtp_url="smtps://$my_user:$my_pass@smtp.aol.com"
 set ssl_force_tls = yes
 
+alternative_order text/enriched text/plain text/html text
 # charset-hook ^iso-8859-1$ gb2312 
 # 把 iso-8859-1 变成 gb2312 的别名，注意 "iso-8859-1" 中间的连字号！
 # charset-hook .* gb2312 # 把所有信件都用 gb2312 显示
@@ -132,11 +133,11 @@ set send_charset="us-ascii:iso-8859-1:gb2312:utf-8"
 # I subscribe to a lot of mailing lists, so this is _very_ useful.  This
 # groups messages on the same subject to make it easier to follow a
 # discussion.  Mutt will draw a nice tree showing how the discussion flows.
-set sort=threads		# primary sorting method
-
+set sort=reverse-threads		# primary sorting method
+# set sort_aux=last-date-received
 #set sort_aux=reverse-date-received	# how to sort subthreads
 #set sort_aux=last-date		# date of the last message in thread
-set sort_browser=reverse-date	# how to sort files in the dir browser
+set sort_browser=date	# how to sort files in the dir browser
 # set spoolfile = +INBOX	# where my new mail is located
 # mailboxes = +INBOX
 #set status_format="-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?  %l]---(%s)-%>-(%P)---"
@@ -176,7 +177,7 @@ unignore	from: subject to cc mail-followup-to \
 #
 
 #color normal white default
-color hdrdefault red default
+color hdrdefault cyan default
 color quoted brightblue default
 color signature red default
 color indicator brightyellow red
@@ -189,7 +190,7 @@ color markers brightcyan default
 color attachment brightmagenta default
 color search default green	# how to hilite search patterns in the pager
 
-color header brightred default ^(From|Subject):
+color header cyan default ^(From|Subject):
 color body magenta default "(ftp|http|https)://[^ ]+"	# point out URLs
 color body magenta default [-a-z_0-9.]+@[-a-z_0-9.]+	# e-mail addresses
 color underline brightgreen default
