@@ -53,7 +53,7 @@ alternative_order text/enriched text/plain text/html text
 # How often to check for new mail (time in seconds).
 #   set mail_check = 120
 
-set editor='gvim'        # editor use gvim
+set editor='gvim -f'        # editor use gvim
 
 #set abort_unmodified=yes	# automatically abort replies if I don't
 				# change the message
